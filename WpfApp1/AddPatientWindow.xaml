@@ -1,0 +1,132 @@
+﻿<Window x:Class="WpfApp1.AddPatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="AddPatientWindow" Height="692" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0">
+            <StackPanel>
+                <GroupBox Header="Основная информация">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Фамилия:"  Grid.Row="0" Grid.Column="0" Margin="0,5"/>
+                        <TextBox x:Name="txtLastName" Grid.Row="0" x:FieldModifier="public" Grid.Column="1" Margin="5"/>
+
+                        <TextBlock Text="Имя:" Grid.Row="1"  Grid.Column="0" Margin="0,5"/>
+                        <TextBox x:Name="txtFirstName" x:FieldModifier="public" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+                        <TextBlock Text="Отчество:" Grid.Row="2" Grid.Column="0" Margin="0,5"/>
+                        <TextBox x:Name="txtMiddleName" Grid.Row="2" x:FieldModifier="public" Grid.Column="1" Margin="5"/>
+
+                        <TextBlock Text="Дата рождения:"  Grid.Row="3" Grid.Column="0" Margin="0,5"/>
+                        <DatePicker x:Name="dpBirthDate" x:FieldModifier="public" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+                        <TextBlock Text="Пол:" Grid.Row="4" Grid.Column="0" Margin="0,5"/>
+                        <ComboBox x:Name="cbGender" x:FieldModifier="public" Grid.Row="4" Grid.Column="1" Margin="5">
+                            <ComboBoxItem Content="Мужской"/>
+                            <ComboBoxItem Content="Женский"/>
+                            <ComboBoxItem Content="Другое"/>
+                        </ComboBox>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Контактная информация" Margin="0,10">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Телефон:" Grid.Row="0" Grid.Column="0" Margin="0,5"/>
+                        <TextBox x:Name="txtPhone" x:FieldModifier="public" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+                        <TextBlock Text="Email:"  Grid.Row="1" Grid.Column="0" Margin="0,5"/>
+                        <TextBox x:Name="txtEmail" x:FieldModifier="public" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+                        <TextBlock Text="Адрес:"  Grid.Row="2" Grid.Column="0" Margin="0,5"/>
+                        <TextBox x:Name="txtAddress" x:FieldModifier="public" Grid.Row="2" Grid.Column="1" Margin="5"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Паспортные данные" Margin="0,10">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Серия и номер:"  Grid.Row="0" Grid.Column="0" Margin="0,5"/>
+                        <StackPanel Grid.Row="0" Grid.Column="1"  Orientation="Horizontal">
+                            <TextBox x:Name="txtPassportSeries" x:FieldModifier="public" Width="50" Margin="5,0"/>
+                            <TextBox x:Name="txtPassportNumber" x:FieldModifier="public" Width="150" Margin="5,0"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Страховой полис" Margin="0,10">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Тип полиса:" Grid.Row="0" Grid.Column="0" Margin="0,5"/>
+                        <ComboBox x:Name="cbInsuranceType" x:FieldModifier="public" Grid.Row="0" Grid.Column="1" Margin="5">
+                            <ComboBoxItem Content="ОМС"/>
+                            <ComboBoxItem Content="ДМС"/>
+                            <ComboBoxItem Content="Другое"/>
+                        </ComboBox>
+
+                        <TextBlock Text="Номер полиса:"  Grid.Row="1" Grid.Column="0" Margin="0,5"/>
+                        <TextBox x:Name="txtInsuranceNumber" x:FieldModifier="public" Grid.Row="1" Grid.Column="1" Margin="5"/>
+
+                        <TextBlock Text="Страховая компания:" Grid.Row="2"  Grid.Column="0" Margin="0,5"/>
+                        <ComboBox x:Name="cbInsuranceCompany" Grid.Row="2" x:FieldModifier="public" Grid.Column="1" Margin="5" IsEditable="True">
+                            <ComboBoxItem Content="Фонтан"/>
+                            <ComboBoxItem Content="Рошан"/>
+                        </ComboBox>
+                    </Grid>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10">
+            <Button x:Name="btnSave" Content="Сохранить" Width="100" Margin="0,0,10,0" x:FieldModifier="public" Click="BtnSave_Click"/>
+            <Button x:Name="btnCancel" Content="Отмена" Width="80" x:FieldModifier="public" Click="BtnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

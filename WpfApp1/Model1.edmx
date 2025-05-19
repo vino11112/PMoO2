@@ -1,0 +1,735 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище labaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Biomaterials">
+          <Key>
+            <PropertyRef Name="BiomaterialID" />
+          </Key>
+          <Property Name="BiomaterialID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Barcode" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ReceptionDate" Type="datetime" Nullable="false" />
+          <Property Name="id_user" Type="int" Nullable="false" />
+          <Property Name="Id_Patients" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InsuranceCompanies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="BiomaterialID" Type="int" Nullable="false" />
+          <Property Name="PatientID" Type="int" Nullable="false" />
+          <Property Name="TotalCost" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="services" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OrderServices">
+          <Key>
+            <PropertyRef Name="OrderServiceID" />
+          </Key>
+          <Property Name="OrderServiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="ServiceID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientInsurance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientId" Type="int" Nullable="false" />
+          <Property Name="InsuranceCompanyId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
+          <Property Name="MiddleName" Type="varchar" MaxLength="100" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="PassportSeries" Type="varchar" MaxLength="4" />
+          <Property Name="PassportNumber" Type="varchar" MaxLength="6" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="InsurancePolicyNumber" Type="varchar" MaxLength="50" />
+          <Property Name="InsurancePolicyType" Type="varchar" MaxLength="50" />
+          <Property Name="InsuranceCompanyId" Type="int" />
+        </EntityType>
+        <EntityType Name="Reports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsuranceCompanyId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="PdfFilePath" Type="nvarchar" MaxLength="255" />
+          <Property Name="CsvFilePath" Type="nvarchar" MaxLength="255" />
+          <Property Name="GeneratedDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id_Role" />
+          </Key>
+          <Property Name="id_Role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="id_serv" />
+          </Key>
+          <Property Name="Code" Type="int" />
+          <Property Name="Service" Type="nvarchar" MaxLength="50" />
+          <Property Name="price" Type="money" />
+          <Property Name="id_serv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="ip" Type="nvarchar" MaxLength="50" />
+          <Property Name="lastenter" Type="date" />
+          <Property Name="servicies" Type="nvarchar" MaxLength="100" />
+          <Property Name="type" Type="int" />
+          <Property Name="id_Role" Type="int" />
+          <Property Name="foto" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Orders__Biomater__797309D9">
+          <End Role="Biomaterials" Type="Self.Biomaterials" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Biomaterials">
+              <PropertyRef Name="BiomaterialID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="BiomaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__PatientI__7A672E12">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderServ__Order__7F2BE32F">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="OrderServices" Type="Self.OrderServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderServices">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderServ__Servi__00200768">
+          <End Role="service" Type="Self.service" Multiplicity="1" />
+          <End Role="OrderServices" Type="Self.OrderServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="id_serv" />
+            </Principal>
+            <Dependent Role="OrderServices">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientIn__Insur__2FCF1A8A">
+          <End Role="InsuranceCompanies" Type="Self.InsuranceCompanies" Multiplicity="1" />
+          <End Role="PatientInsurance" Type="Self.PatientInsurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompanies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientInsurance">
+              <PropertyRef Name="InsuranceCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientIn__Patie__2EDAF651">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="PatientInsurance" Type="Self.PatientInsurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="PatientInsurance">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reports__Insuran__339FAB6E">
+          <End Role="InsuranceCompanies" Type="Self.InsuranceCompanies" Multiplicity="1" />
+          <End Role="Reports" Type="Self.Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompanies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="InsuranceCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Biomaterials_users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="Biomaterials" Type="Self.Biomaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Biomaterials">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id_Role" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище labaModelContainer">
+          <EntitySet Name="Biomaterials" EntityType="Self.Biomaterials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsuranceCompanies" EntityType="Self.InsuranceCompanies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderServices" EntityType="Self.OrderServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientInsurance" EntityType="Self.PatientInsurance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reports" EntityType="Self.Reports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="service" EntityType="Self.service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Orders__Biomater__797309D9" Association="Self.FK__Orders__Biomater__797309D9">
+            <End Role="Biomaterials" EntitySet="Biomaterials" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__PatientI__7A672E12" Association="Self.FK__Orders__PatientI__7A672E12">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderServ__Order__7F2BE32F" Association="Self.FK__OrderServ__Order__7F2BE32F">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderServices" EntitySet="OrderServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderServ__Servi__00200768" Association="Self.FK__OrderServ__Servi__00200768">
+            <End Role="service" EntitySet="service" />
+            <End Role="OrderServices" EntitySet="OrderServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientIn__Insur__2FCF1A8A" Association="Self.FK__PatientIn__Insur__2FCF1A8A">
+            <End Role="InsuranceCompanies" EntitySet="InsuranceCompanies" />
+            <End Role="PatientInsurance" EntitySet="PatientInsurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientIn__Patie__2EDAF651" Association="Self.FK__PatientIn__Patie__2EDAF651">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="PatientInsurance" EntitySet="PatientInsurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reports__Insuran__339FAB6E" Association="Self.FK__Reports__Insuran__339FAB6E">
+            <End Role="InsuranceCompanies" EntitySet="InsuranceCompanies" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Biomaterials_users" Association="Self.FK_Biomaterials_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="Biomaterials" EntitySet="Biomaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_Role" Association="Self.FK_users_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="labaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="labaEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Biomaterials" EntityType="labaModel.Biomaterials" />
+          <EntitySet Name="InsuranceCompanies" EntityType="labaModel.InsuranceCompanies" />
+          <EntitySet Name="Orders" EntityType="labaModel.Orders" />
+          <EntitySet Name="OrderServices" EntityType="labaModel.OrderServices" />
+          <EntitySet Name="PatientInsurance" EntityType="labaModel.PatientInsurance" />
+          <EntitySet Name="Patients" EntityType="labaModel.Patients" />
+          <EntitySet Name="Reports" EntityType="labaModel.Reports" />
+          <EntitySet Name="Role" EntityType="labaModel.Role" />
+          <EntitySet Name="service" EntityType="labaModel.service" />
+          <EntitySet Name="sysdiagrams" EntityType="labaModel.sysdiagrams" />
+          <EntitySet Name="users" EntityType="labaModel.users" />
+          <AssociationSet Name="FK__Orders__Biomater__797309D9" Association="labaModel.FK__Orders__Biomater__797309D9">
+            <End Role="Biomaterials" EntitySet="Biomaterials" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Biomaterials_users" Association="labaModel.FK_Biomaterials_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="Biomaterials" EntitySet="Biomaterials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientIn__Insur__2FCF1A8A" Association="labaModel.FK__PatientIn__Insur__2FCF1A8A">
+            <End Role="InsuranceCompanies" EntitySet="InsuranceCompanies" />
+            <End Role="PatientInsurance" EntitySet="PatientInsurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reports__Insuran__339FAB6E" Association="labaModel.FK__Reports__Insuran__339FAB6E">
+            <End Role="InsuranceCompanies" EntitySet="InsuranceCompanies" />
+            <End Role="Reports" EntitySet="Reports" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__PatientI__7A672E12" Association="labaModel.FK__Orders__PatientI__7A672E12">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderServ__Order__7F2BE32F" Association="labaModel.FK__OrderServ__Order__7F2BE32F">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderServices" EntitySet="OrderServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderServ__Servi__00200768" Association="labaModel.FK__OrderServ__Servi__00200768">
+            <End Role="service" EntitySet="service" />
+            <End Role="OrderServices" EntitySet="OrderServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PatientIn__Patie__2EDAF651" Association="labaModel.FK__PatientIn__Patie__2EDAF651">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="PatientInsurance" EntitySet="PatientInsurance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_users_Role" Association="labaModel.FK_users_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Biomaterials">
+          <Key>
+            <PropertyRef Name="BiomaterialID" />
+          </Key>
+          <Property Name="BiomaterialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Barcode" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ReceptionDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_user" Type="Int32" Nullable="false" />
+          <Property Name="Id_Patients" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="labaModel.FK__Orders__Biomater__797309D9" FromRole="Biomaterials" ToRole="Orders" />
+          <NavigationProperty Name="users" Relationship="labaModel.FK_Biomaterials_users" FromRole="Biomaterials" ToRole="users" />
+        </EntityType>
+        <EntityType Name="InsuranceCompanies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PatientInsurance" Relationship="labaModel.FK__PatientIn__Insur__2FCF1A8A" FromRole="InsuranceCompanies" ToRole="PatientInsurance" />
+          <NavigationProperty Name="Reports" Relationship="labaModel.FK__Reports__Insuran__339FAB6E" FromRole="InsuranceCompanies" ToRole="Reports" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BiomaterialID" Type="Int32" Nullable="false" />
+          <Property Name="PatientID" Type="Int32" Nullable="false" />
+          <Property Name="TotalCost" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="services" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Biomaterials" Relationship="labaModel.FK__Orders__Biomater__797309D9" FromRole="Orders" ToRole="Biomaterials" />
+          <NavigationProperty Name="Patients" Relationship="labaModel.FK__Orders__PatientI__7A672E12" FromRole="Orders" ToRole="Patients" />
+          <NavigationProperty Name="OrderServices" Relationship="labaModel.FK__OrderServ__Order__7F2BE32F" FromRole="Orders" ToRole="OrderServices" />
+        </EntityType>
+        <EntityType Name="OrderServices">
+          <Key>
+            <PropertyRef Name="OrderServiceID" />
+          </Key>
+          <Property Name="OrderServiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="ServiceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="labaModel.FK__OrderServ__Order__7F2BE32F" FromRole="OrderServices" ToRole="Orders" />
+          <NavigationProperty Name="service" Relationship="labaModel.FK__OrderServ__Servi__00200768" FromRole="OrderServices" ToRole="service" />
+        </EntityType>
+        <EntityType Name="PatientInsurance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientId" Type="Int32" Nullable="false" />
+          <Property Name="InsuranceCompanyId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="InsuranceCompanies" Relationship="labaModel.FK__PatientIn__Insur__2FCF1A8A" FromRole="PatientInsurance" ToRole="InsuranceCompanies" />
+          <NavigationProperty Name="Patients" Relationship="labaModel.FK__PatientIn__Patie__2EDAF651" FromRole="PatientInsurance" ToRole="Patients" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="PassportSeries" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PassportNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InsurancePolicyNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InsurancePolicyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InsuranceCompanyId" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="labaModel.FK__Orders__PatientI__7A672E12" FromRole="Patients" ToRole="Orders" />
+          <NavigationProperty Name="PatientInsurance" Relationship="labaModel.FK__PatientIn__Patie__2EDAF651" FromRole="Patients" ToRole="PatientInsurance" />
+        </EntityType>
+        <EntityType Name="Reports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsuranceCompanyId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PdfFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CsvFilePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GeneratedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="InsuranceCompanies" Relationship="labaModel.FK__Reports__Insuran__339FAB6E" FromRole="Reports" ToRole="InsuranceCompanies" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id_Role" />
+          </Key>
+          <Property Name="id_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="users" Relationship="labaModel.FK_users_Role" FromRole="Role" ToRole="users" />
+        </EntityType>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="id_serv" />
+          </Key>
+          <Property Name="Code" Type="Int32" />
+          <Property Name="Service1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="id_serv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="OrderServices" Relationship="labaModel.FK__OrderServ__Servi__00200768" FromRole="service" ToRole="OrderServices" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastenter" Type="DateTime" Precision="0" />
+          <Property Name="servicies" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="Int32" />
+          <Property Name="id_Role" Type="Int32" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Biomaterials" Relationship="labaModel.FK_Biomaterials_users" FromRole="users" ToRole="Biomaterials" />
+          <NavigationProperty Name="Role" Relationship="labaModel.FK_users_Role" FromRole="users" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK__Orders__Biomater__797309D9">
+          <End Type="labaModel.Biomaterials" Role="Biomaterials" Multiplicity="1" />
+          <End Type="labaModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Biomaterials">
+              <PropertyRef Name="BiomaterialID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="BiomaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Biomaterials_users">
+          <End Type="labaModel.users" Role="users" Multiplicity="1" />
+          <End Type="labaModel.Biomaterials" Role="Biomaterials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Biomaterials">
+              <PropertyRef Name="id_user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientIn__Insur__2FCF1A8A">
+          <End Type="labaModel.InsuranceCompanies" Role="InsuranceCompanies" Multiplicity="1" />
+          <End Type="labaModel.PatientInsurance" Role="PatientInsurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompanies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PatientInsurance">
+              <PropertyRef Name="InsuranceCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reports__Insuran__339FAB6E">
+          <End Type="labaModel.InsuranceCompanies" Role="InsuranceCompanies" Multiplicity="1" />
+          <End Type="labaModel.Reports" Role="Reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompanies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Reports">
+              <PropertyRef Name="InsuranceCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__PatientI__7A672E12">
+          <End Type="labaModel.Patients" Role="Patients" Multiplicity="1" />
+          <End Type="labaModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PatientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderServ__Order__7F2BE32F">
+          <End Type="labaModel.Orders" Role="Orders" Multiplicity="1" />
+          <End Type="labaModel.OrderServices" Role="OrderServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderServices">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderServ__Servi__00200768">
+          <End Type="labaModel.service" Role="service" Multiplicity="1" />
+          <End Type="labaModel.OrderServices" Role="OrderServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="id_serv" />
+            </Principal>
+            <Dependent Role="OrderServices">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PatientIn__Patie__2EDAF651">
+          <End Type="labaModel.Patients" Role="Patients" Multiplicity="1" />
+          <End Type="labaModel.PatientInsurance" Role="PatientInsurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="PatientID" />
+            </Principal>
+            <Dependent Role="PatientInsurance">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_users_Role">
+          <End Type="labaModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="labaModel.users" Role="users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id_Role" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="id_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище labaModelContainer" CdmEntityContainer="labaEntities3">
+          <EntitySetMapping Name="Biomaterials">
+            <EntityTypeMapping TypeName="labaModel.Biomaterials">
+              <MappingFragment StoreEntitySet="Biomaterials">
+                <ScalarProperty Name="Id_Patients" ColumnName="Id_Patients" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="ReceptionDate" ColumnName="ReceptionDate" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+                <ScalarProperty Name="BiomaterialID" ColumnName="BiomaterialID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsuranceCompanies">
+            <EntityTypeMapping TypeName="labaModel.InsuranceCompanies">
+              <MappingFragment StoreEntitySet="InsuranceCompanies">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="labaModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="services" ColumnName="services" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="BiomaterialID" ColumnName="BiomaterialID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderServices">
+            <EntityTypeMapping TypeName="labaModel.OrderServices">
+              <MappingFragment StoreEntitySet="OrderServices">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderServiceID" ColumnName="OrderServiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientInsurance">
+            <EntityTypeMapping TypeName="labaModel.PatientInsurance">
+              <MappingFragment StoreEntitySet="PatientInsurance">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="InsuranceCompanyId" ColumnName="InsuranceCompanyId" />
+                <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="labaModel.Patients">
+              <MappingFragment StoreEntitySet="Patients">
+                <ScalarProperty Name="InsuranceCompanyId" ColumnName="InsuranceCompanyId" />
+                <ScalarProperty Name="InsurancePolicyType" ColumnName="InsurancePolicyType" />
+                <ScalarProperty Name="InsurancePolicyNumber" ColumnName="InsurancePolicyNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="labaModel.Reports">
+              <MappingFragment StoreEntitySet="Reports">
+                <ScalarProperty Name="GeneratedDate" ColumnName="GeneratedDate" />
+                <ScalarProperty Name="CsvFilePath" ColumnName="CsvFilePath" />
+                <ScalarProperty Name="PdfFilePath" ColumnName="PdfFilePath" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="InsuranceCompanyId" ColumnName="InsuranceCompanyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="labaModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Role1" ColumnName="Role" />
+                <ScalarProperty Name="id_Role" ColumnName="id_Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="service">
+            <EntityTypeMapping TypeName="labaModel.service">
+              <MappingFragment StoreEntitySet="service">
+                <ScalarProperty Name="id_serv" ColumnName="id_serv" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="Service1" ColumnName="Service" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="labaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="labaModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="id_Role" ColumnName="id_Role" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="servicies" ColumnName="servicies" />
+                <ScalarProperty Name="lastenter" ColumnName="lastenter" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

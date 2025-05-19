@@ -1,0 +1,35 @@
+﻿<Window x:Class="WpfApp1.admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="admin" Height="450" Width="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Панель управления -->
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Content="Обновить" Click="RefreshData_Click" Margin="0,0,10,0" Padding="10,5"/>
+            <Button Content="Сохранить" Click="SaveChanges_Click" Padding="10,5"/>
+            <Button Content="добавить" Click="AddUser_Click" Padding="10,5" Margin="10,0,10,0" RenderTransformOrigin="1.013,0.421" Width="96"/>
+        </StackPanel>
+
+        <!-- DataGrid с автоматическими столбцами -->
+        <DataGrid x:Name="usersGrid"
+                 Grid.Row="1"
+                 Margin="0,10,0,0"
+                 AutoGenerateColumns="True"
+                 CanUserAddRows="True"
+                 CanUserDeleteRows="True"/>
+
+        <!-- Статус -->
+        <TextBlock x:Name="statusText" Grid.Row="2" Margin="0,10,0,0"/>
+        
+    </Grid>
+</Window>

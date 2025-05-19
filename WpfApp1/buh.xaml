@@ -1,0 +1,29 @@
+﻿<Window x:Class="WpfApp1.buh"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="buh" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="FIO" x:FieldModifier="public" HorizontalAlignment="Left" Margin="183,56,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="cast" x:FieldModifier="public" HorizontalAlignment="Left" Margin="183,140,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="servis" x:FieldModifier="public" HorizontalAlignment="Left" Margin="183,168,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="sum" x:FieldModifier="public" HorizontalAlignment="Left" Margin="183,195,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
+        <DatePicker x:Name="date1" Margin="183,79,497,0" VerticalAlignment="Top" Width="120" />
+        <DatePicker x:Name="date2" Margin="182,108,498,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Страховая компания" HorizontalAlignment="Left" Margin="53,25,0,0" VerticalAlignment="Top"/>
+        <Label Content="ФИО" HorizontalAlignment="Left" Margin="53,52,0,0" VerticalAlignment="Top"/>
+        <Label Content="Стоимость услуги" HorizontalAlignment="Left" Margin="53,136,0,0" VerticalAlignment="Top"/>
+        <Label Content="Услуги" HorizontalAlignment="Left" Margin="53,164,0,0" VerticalAlignment="Top"/>
+        <Label Content="Итоговая сумма" HorizontalAlignment="Left" Margin="53,191,0,0" VerticalAlignment="Top"/>
+        <Button Content="PDF" HorizontalAlignment="Left" Margin="84,244,0,0" VerticalAlignment="Top" Height="41" Width="62" Click="Button_Click"/>
+        <Button Content="CSV" HorizontalAlignment="Left" Margin="151,244,0,0" VerticalAlignment="Top" Height="41" Width="62" Click="Button_Click_1"/>
+        <ComboBox x:Name="company" HorizontalAlignment="Left" Margin="183,29,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Фонтан"/>
+                <ComboBoxItem Content="Рошан"/>
+        </ComboBox>
+
+    </Grid>
+</Window>
