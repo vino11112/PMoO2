@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b269414bacf14b258b752cface6203a6" Name="Diagram1" DisplayType="true">
-        <EntityTypeShape EntityType="labaModel.Biomaterials" Width="1.5" PointX="3.75" PointY="10.5" />
+        <EntityTypeShape EntityType="labaModel.Biomaterials" Width="1.5" PointX="7" PointY="4" />
         <EntityTypeShape EntityType="labaModel.InsuranceCompanies" Width="1.5" PointX="0.75" PointY="0.875" />
-        <EntityTypeShape EntityType="labaModel.Orders" Width="1.5" PointX="6" PointY="4.25" />
-        <EntityTypeShape EntityType="labaModel.OrderServices" Width="1.5" PointX="8.25" PointY="4.75" />
-        <EntityTypeShape EntityType="labaModel.PatientInsurance" Width="1.5" PointX="3" PointY="4.5" />
-        <EntityTypeShape EntityType="labaModel.Patients" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="labaModel.Orders" Width="1.5" PointX="5.125" PointY="3.75" />
+        <EntityTypeShape EntityType="labaModel.OrderServices" Width="1.5" PointX="7" PointY="1.25" />
+        <EntityTypeShape EntityType="labaModel.PatientInsurance" Width="1.5" PointX="2.875" PointY="4" />
+        <EntityTypeShape EntityType="labaModel.Patients" Width="1.5" PointX="0.625" PointY="3.375" />
         <EntityTypeShape EntityType="labaModel.Reports" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="labaModel.Role" Width="1.5" PointX="1.5" PointY="15" />
-        <EntityTypeShape EntityType="labaModel.service" Width="1.5" PointX="6" PointY="0.75" />
-        <EntityTypeShape EntityType="labaModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="8.375" />
-        <EntityTypeShape EntityType="labaModel.users" Width="1.5" PointX="1.5" PointY="10.125" />
+        <EntityTypeShape EntityType="labaModel.service" Width="1.5" PointX="5.125" PointY="1.25" />
+        <EntityTypeShape EntityType="labaModel.sysdiagrams" Width="1.5" PointX="8.25" PointY="7.375" />
+        <EntityTypeShape EntityType="labaModel.users" Width="1.5" PointX="8.75" PointY="2.5" />
         <AssociationConnector Association="labaModel.FK__Orders__Biomater__797309D9" />
         <AssociationConnector Association="labaModel.FK_Biomaterials_users" />
         <AssociationConnector Association="labaModel.FK__PatientIn__Insur__2FCF1A8A" />

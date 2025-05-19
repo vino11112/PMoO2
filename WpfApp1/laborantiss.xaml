@@ -5,70 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="laborantiss" Height="450" Width="800">
-    <Grid>
-       <!-- <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        Title="laborantiss" Height="469" Width="800">
+    <Grid RenderTransformOrigin="0.503,0.565" Margin="0,0,0,-6">
+        <DataGrid x:Name="usersGrid"
+                 Margin="0,10,0,0"
+                 AutoGenerateColumns="True"
+                 CanUserAddRows="True"
+                 CanUserDeleteRows="True" Height="244" VerticalAlignment="Top"/>
+        <TextBox x:Name="statusText" Margin="10,406,10,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+        <Button Content="refresh" HorizontalAlignment="Left" Margin="10,362,0,0" Click="RefreshData_Click" VerticalAlignment="Top"/>
+        <TextBox x:Name="aa" HorizontalAlignment="Left" Margin="31,282,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.509,0.673"/>
+        <Button Content="отправить" HorizontalAlignment="Left" Margin="11,320,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Label Content="id" HorizontalAlignment="Left" Margin="6,278,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.606,0.079"/>
+        <Button Content="экспорт" HorizontalAlignment="Left" Margin="111,320,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
 
-       
-        <ComboBox x:Name="cbAnalyzers" Grid.Row="0" Margin="10"
-                  DisplayMemberPath="Name"
-                  SelectionChanged="CbAnalyzers_SelectionChanged"/>
-
-     
-        <TabControl Grid.Row="1">
-            <TabItem Header="Невыполненные исследования">
-                <DataGrid x:Name="dgPendingServices" AutoGenerateColumns="False" IsReadOnly="True">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Код" Binding="{Binding Service.Code}"/>
-                        <DataGridTextColumn Header="Название" Binding="{Binding Service.Name}" Width="*"/>
-                        <DataGridTextColumn Header="Тип результата" Binding="{Binding Service.ResultType}"/>
-                        <DataGridTemplateColumn Header="Действия">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Отправить на исследование" 
-                                            Click="BtnSendToAnalyzer_Click"
-                                            IsEnabled="{Binding AnalyzerId, Converter={StaticResource NullToBoolConverter}}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-
-            <TabItem Header="Выполняющиеся исследования">
-                <DataGrid x:Name="dgInProgressServices" AutoGenerateColumns="False" IsReadOnly="True">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Код" Binding="{Binding Service.Code}"/>
-                        <DataGridTextColumn Header="Название" Binding="{Binding Service.Name}" Width="*"/>
-                        <DataGridTextColumn Header="Анализатор" Binding="{Binding Analyzer.Name}"/>
-                        <DataGridTemplateColumn Header="Прогресс">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ProgressBar Value="{Binding Progress}" Maximum="100" Height="20"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Header="Результат" Binding="{Binding Result}"/>
-                        <DataGridTemplateColumn Header="Действия">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Content="Одобрить" Margin="0,0,5,0"
-                                                Click="BtnApproveResult_Click"
-                                                IsEnabled="{Binding Result, Converter={StaticResource NullToBoolConverter}}"/>
-                                        <Button Content="Отклонить" 
-                                                Click="BtnRejectResult_Click"
-                                                IsEnabled="{Binding Result, Converter={StaticResource NullToBoolConverter}}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-        </TabControl> -->
     </Grid>
 </Window>
